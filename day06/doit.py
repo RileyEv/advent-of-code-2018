@@ -78,7 +78,7 @@ def get_count(board: List[List[Tuple[int,int]]], n: int) -> int:
                 count += 1
     return count
 
-def process_task2(board: List[List[Tuple[int,int]]], coor: Tuple[int,int]) -> int:
+def process_task2(board: List[List[Tuple[int,int]]], coor: Tuple[int,int]) -> List[List[Tuple[int,int]]]:
     for y, row in enumerate(board):
         for x, cell in enumerate(row):
             board[y][x] = (board[y][x][0], board[y][x][1] + get_dist((x, y), coor))
@@ -101,8 +101,8 @@ def main() -> None:
     non_infinite = get_non_infinite_coors(board, len(file_contents))
 
     largest_area: int = 0
-    for coor in non_infinite:
-        count = get_count(board, coor)
+    for coord in non_infinite:
+        count = get_count(board, coord)
         if count > largest_area:
             largest_area = count
     print (largest_area)
